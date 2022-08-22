@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import Wordle from './components/Wordle';
+import Keyboard from './components/Keyboard';
 
 /* Styles */
 const DivScreen = styled.div`
@@ -16,7 +17,7 @@ function App() {
 			</div>
 			<div className="mx-auto">
                 <div className="pb-3"><Wordle /></div>
-                <div className="pb-3" id="keyboard"></div>
+                <div className="pb-3"><Keyboard /></div>
 			</div>
 		</DivScreen>
 	);
