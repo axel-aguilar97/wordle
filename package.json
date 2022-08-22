@@ -2,7 +2,7 @@
 	"name": "wordle",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://axel-aguilar97.github.io/wordle",
+	"homepage": "https://axel-aguilar97.github.io/wordle/index.html",
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^13.3.0",
