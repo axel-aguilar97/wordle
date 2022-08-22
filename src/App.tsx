@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
 
+import Wordle from './components/Wordle';
+
+/* Styles */
+const DivScreen = styled.div`
+	height: 100vh;
+`;
+
+/* Main */
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<DivScreen className="container-fluid text-bg-dark">
+			<div className="container d-flex justify-content-center">
+				<h1 className="m-0">Wordle</h1>
+			</div>
+			<div className="mx-auto">
+                <div className="pb-3"><Wordle /></div>
+                <div className="pb-3" id="keyboard"></div>
+			</div>
+		</DivScreen>
+	);
 }
 
 export default App;
