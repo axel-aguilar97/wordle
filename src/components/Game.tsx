@@ -1,13 +1,9 @@
 import React from "react";
 import styled from 'styled-components';
 
-/* Styles */
-const DivAlerts = styled.div`
-    display: flex;
-    justify-content: center;
-    padding: 25px;
-`;
+import Keyboard from "./Keyboard";
 
+/* Styles */
 const DivWordle = styled.div`
     display: grid;
     place-items: center;
@@ -63,14 +59,18 @@ interface IState {
 }
 
 /* Main */
-class Wordle extends React.Component<IProps, IState> {
+class Game extends React.Component<IProps, IState> {
     constructor(props: any) {
         super(props);
 
         this.state = {
             isGameLoaded: false,
             isGameEnd: false,
-            dictionary: ["atsul", "karii", "ramuw", "tosta", "natuw"],
+            dictionary: [
+                "carpe", "bacon", "tosta", "diewo", "ramuw", "natuw", "atsel", "yamil",
+                "supor", "wazap", "rocio", "kekon", "belen", "bruno", "klawz", "martu",
+                "chifa"
+            ],
             secretWord: "",
             grid: Array(6).fill("").map(() => Array(5).fill("")),
             backgroundGrid: Array(6).fill("").map(() => Array(5).fill("")),
@@ -78,7 +78,7 @@ class Wordle extends React.Component<IProps, IState> {
             animationDelay: Array(6).fill("").map(() => Array(5).fill("")),
             currentRow: 0,
             currentCol: 0
-        };
+        }
     }
 
     alerts() {
@@ -124,7 +124,7 @@ class Wordle extends React.Component<IProps, IState> {
                 }
             }
 
-            if(this.isLetter(key)) {
+            if(!(event.ctrlKey || event.shiftKey) && this.isLetter(key)) {
                 if(this.state.isGameEnd === false) {
                     this.addLetter(key);
                 }
@@ -224,10 +224,34 @@ class Wordle extends React.Component<IProps, IState> {
 
         let grid = [...this.state.grid];
         
-        grid[this.state.currentRow][this.state.currentCol] = key;
+        grid[this.state.currentRow][this.state.currentCol] = key.toLocaleLowerCase();
         
         this.setState({currentCol: (this.state.currentCol + 1)});
         this.setState({grid: grid});
+    }
+
+    addLetterFromKeyboard = (event: any) => {
+        if(event.target.innerHTML === "ENTER") {
+            if(this.state.isGameEnd === false) {
+                if(this.state.currentCol === 5) {
+                    this.checkWord();
+                } else {
+                    alert("Completa la palabra");
+                }
+            }
+        }
+
+        if(event.target.innerHTML === "DEL") {
+            if(this.state.isGameEnd === false) {
+                this.removeLetter();
+            }
+        }
+
+        if(this.isLetter(event.target.innerHTML)) {
+            if(this.state.isGameEnd === false) {
+                this.addLetter(event.target.innerHTML);
+            }
+        }
     }
 
     componentDidMount() {
@@ -241,17 +265,22 @@ class Wordle extends React.Component<IProps, IState> {
     render() {
         return (
             <>
-                <DivAlerts>
+                <div className="pb-3">
                     {this.alerts()}
-                </DivAlerts>
-                <DivWordle>
-                    <DivWordleGrid>
-                        {this.drawGrid()}
-                    </DivWordleGrid>
-                </DivWordle>
+                </div>
+                <div className="pb-3">
+                    <DivWordle>
+                        <DivWordleGrid>
+                            {this.drawGrid()}
+                        </DivWordleGrid>
+                    </DivWordle>
+                </div>
+                <div className="pb-3">
+                    <Keyboard letter={this.addLetterFromKeyboard} />
+                </div>
             </>
         );
     }
-};
+}
 
-export default Wordle;
+export default Game;
