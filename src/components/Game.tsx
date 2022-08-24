@@ -81,10 +81,6 @@ class Game extends React.Component<IProps, IState> {
         }
     }
 
-    alerts() {
-        return <></>
-    }
-
     drawGrid() {
         let box = [];
         let theme = {};
@@ -265,9 +261,6 @@ class Game extends React.Component<IProps, IState> {
     render() {
         return (
             <>
-                <div className="pb-3">
-                    {this.alerts()}
-                </div>
                 <div className="pb-3">
                     <DivWordle>
                         <DivWordleGrid>

@@ -9,7 +9,7 @@ const DivScreen = styled.div`
 `;
 
 /* Main */
-export function App() {
+export default function App() {
 	return (
 		<DivScreen className="container-fluid text-bg-dark">
 			<div className="container d-flex justify-content-center">

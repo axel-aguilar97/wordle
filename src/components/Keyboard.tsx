@@ -30,6 +30,15 @@ const ButtonKey = styled.button`
     border: none;
     font-family: Arial, Arial, Helvetica, sans-serif;
     text-transform: uppercase;
+    transition: 0.2s ease-out; 
+
+    &:hover {
+        opacity: .6;
+    }
+
+    &:focus {
+        opacity: .25;
+    }
 `;
 
 /* Interface */
